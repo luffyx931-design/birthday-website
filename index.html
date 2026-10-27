@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#190d1b">
+<title>Happy Birthday ❤️</title>
+<style>
+  :root { --pink:#ff7aa8; --rose:#ffd1df; --bg:#190d1b; --card:rgba(255,255,255,.08); }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    margin:0; min-height:100vh; color:#fff6fa; font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+    background:radial-gradient(ellipse at top,#54233f 0%,#281326 45%,#100a15 100%);
+    overflow-x:hidden;
+  }
+  .hearts { position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:0; }
+  .heart { position:absolute; bottom:-50px; color:#ff7aa8; opacity:0; animation:floatUp linear infinite; text-shadow:0 0 18px #ff4f8b88; }
+  @keyframes floatUp { 0%{transform:translateY(0) rotate(0);opacity:0} 10%{opacity:.65} 90%{opacity:.55} 100%{transform:translateY(-115vh) rotate(25deg);opacity:0} }
+  main { position:relative; z-index:1; width:min(900px,100%); margin:auto; padding:26px 16px 48px; }
+  .hero { text-align:center; padding:58px 12px 34px; }
+  .eyebrow { color:var(--rose); letter-spacing:.22em; text-transform:uppercase; font-size:.76rem; }
+  h1 { font-family:Georgia,serif; font-size:clamp(2.6rem,10vw,5.5rem); line-height:1.02; margin:16px 0; font-weight:500; }
+  h1 span { display:block; color:var(--pink); font-style:italic; }
+  .subtitle { max-width:560px; margin:0 auto 25px; line-height:1.7; color:#f4dce7; }
+  .button-row { display:flex; justify-content:center; flex-wrap:wrap; gap:10px; }
+  button { border:0; border-radius:999px; padding:13px 20px; font-weight:700; font-size:.96rem; cursor:pointer; transition:transform .2s,filter .2s; }
+  button:hover { transform:translateY(-2px); filter:brightness(1.07); }
+  .primary { color:#3a1024; background:linear-gradient(135deg,#ffd1df,#ff7aa8); box-shadow:0 8px 30px #ff7aa833; }
+  .secondary { color:#ffe8f0; border:1px solid #ffc0d466; background:#ffffff0d; }
+  section { margin:22px 0; padding:24px; border:1px solid #ffd5e51e; border-radius:24px; background:var(--card); backdrop-filter:blur(10px); box-shadow:0 12px 40px #00000015; }
+  h2 { margin:0 0 14px; font-family:Georgia,serif; font-size:1.8rem; font-weight:500; }
+  .message { color:#f9e7ee; line-height:1.9; white-space:pre-line; }
+  .surprise { display:none; margin-top:18px; padding:20px; border-radius:18px; background:#ff7aa817; border:1px solid #ff9fbe44; text-align:center; }
+  .surprise.show { display:block; animation:appear .65s ease both; }
+  @keyframes appear { from{opacity:0;transform:translateY(10px) scale(.98)} to{opacity:1;transform:translateY(0) scale(1)} }
+  .gallery { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+  .photo { aspect-ratio:3/4; border-radius:16px; overflow:hidden; background:linear-gradient(145deg,#63334d,#29162c); display:flex; align-items:center; justify-content:center; text-align:center; color:#ffd1df; padding:8px; font-size:.9rem; }
+  .photo img { width:100%; height:100%; object-fit:cover; display:block; }
+  .hint { color:#d8bdca; font-size:.88rem; line-height:1.6; }
+  .upload { margin-top:14px; max-width:100%; color:#ffe8f0; }
+  .footer { text-align:center; padding:25px 8px 0; color:#e8cbd8; font-size:.9rem; }
+  .sparkle { color:#ffd1df; }
+  @media(max-width:520px) {
+    main { padding:12px 12px 32px; }
+    .hero { padding:52px 5px 26px; }
+    section { padding:19px 16px; border-radius:20px; }
+    .gallery { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .photo:last-child:nth-child(odd) { grid-column:span 2; aspect-ratio:16/9; }
+    button { padding:12px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="hearts" id="hearts" aria-hidden="true"></div>
+<main>
+  <header class="hero">
+    <div class="eyebrow">A little page made with love</div>
+    <h1>Happy Birthday <span>Dear You ♡</span></h1>
+    <p class="subtitle">Today is all about you — your smile, your dreams, and all the beautiful moments still waiting for you.</p>
+    <div class="button-row">
+      <button class="primary" id="surpriseBtn">🎁 Open Your Surprise</button>
+      <button class="secondary" id="musicBtn">♫ Play Music</button>
+    </div>
+  </header>
+
+  <section>
+    <h2>For your special day 💌</h2>
+    <div class="message" id="birthdayMessage">Happy Birthday! ❤️
+
+I hope your day is filled with laughter, warmth, and little moments that make you smile. May this new chapter bring you peace, exciting adventures, and dreams coming true.
+
+You deserve so much happiness today and always. Keep shining in your own beautiful way. ✨
+
+With lots of love,
+Someone who cares about you ♡</div>
+  </section>
+
+  <section>
+    <h2 class="sparkle">A little surprise ✨</h2>
+    <p class="hint">Tap the surprise button above when you're ready…</p>
+    <div class="surprise" id="surprise">
+      <div style="font-size:2.5rem">💖 🎂 💖</div>
+      <h2>Make a wish!</h2>
+      <p class="message">If I could wish one thing for you, it would be a year full of reasons to smile, people who truly care, and memories you’ll treasure forever. Happy Birthday! 🌷</p>
+      <div style="font-size:1.8rem">♡ ♡ ♡</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Little memories 📸</h2>
+    <p class="hint">Choose photos from your phone. They appear here on this device; to include them in the shared website, add the image files to the website folder before publishing.</p>
+    <div class="gallery" id="gallery">
+      <div class="photo">Your favourite memory ♡</div>
+      <div class="photo">A beautiful moment ✨</div>
+      <div class="photo">A smile to remember 🌷</div>
+    </div>
+    <input class="upload" id="photoInput" type="file" accept="image/*" multiple aria-label="Choose birthday photos">
+  </section>
+
+  <footer class="footer">Made with ♡ just for you<br><span style="opacity:.7">Wishing you a beautiful year ahead.</span></footer>
+</main>
+
+<!-- Optional: put your own music file named birthday-song.mp3 beside this HTML file. -->
+<audio id="music" loop preload="none">
+  <source src="birthday-song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  // Floating hearts
+  const heartLayer = document.getElementById('hearts');
+  const symbols = ['♡','♥','❤','✧'];
+  for (let i = 0; i < 22; i++) {
+    const heart = document.createElement('span');
+    heart.className = 'heart';
+    heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    heart.style.left = (Math.random() * 100) + '%';
+    heart.style.fontSize = (14 + Math.random() * 22) + 'px';
+    heart.style.animationDuration = (9 + Math.random() * 12) + 's';
+    heart.style.animationDelay = (-Math.random() * 18) + 's';
+    heartLayer.appendChild(heart);
+  }
+
+  // Surprise button
+  const surprise = document.getElementById('surprise');
+  document.getElementById('surpriseBtn').addEventListener('click', () => {
+    surprise.classList.toggle('show');
+    document.getElementById('surpriseBtn').textContent =
+      surprise.classList.contains('show') ? '💖 Hide Surprise' : '🎁 Open Your Surprise';
+    if (surprise.classList.contains('show')) surprise.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+
+  // Music button. Browsers require a user tap before audio can play.
+  const music = document.getElementById('music');
+  const musicBtn = document.getElementById('musicBtn');
+  musicBtn.addEventListener('click', async () => {
+    if (music.paused) {
+      try {
+        await music.play();
+        musicBtn.textContent = '♫ Pause Music';
+      } catch (e) {
+        alert('Add a music file named birthday-song.mp3 beside index.html, then try again.');
+      }
+    } else {
+      music.pause();
+      musicBtn.textContent = '♫ Play Music';
+    }
+  });
+
+  // Local photo preview (not uploaded to the internet).
+  document.getElementById('photoInput').addEventListener('change', (event) => {
+    const files = Array.from(event.target.files || []).filter(file => file.type.startsWith('image/')).slice(0, 9);
+    if (!files.length) return;
+    const gallery = document.getElementById('gallery');
+    gallery.innerHTML = '';
+    files.forEach(file => {
+      const card = document.createElement('div');
+      card.className = 'photo';
+      const img = document.createElement('img');
+      img.alt = 'Birthday memory';
+      img.src = URL.createObjectURL(file);
+      card.appendChild(img);
+      gallery.appendChild(card);
+    });
+  });
+</script>
+</body>
+</html>
